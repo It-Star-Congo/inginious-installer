@@ -23,6 +23,27 @@ echo "🐍 Création de l'environnement virtuel..."
 python3 -m venv venv
 source venv/bin/activate
 
+# =============================
+# Création du fichier requirements.txt si absent
+# =============================
+
+# Vérifier si requirements.txt existe, sinon le créer
+if [ ! -f "requirements.txt" ]; then
+    echo "📄 Le fichier requirements.txt est manquant. Création du fichier..."
+
+    # Créer un fichier requirements.txt avec les dépendances par défaut
+    cat <<EOL > requirements.txt
+Flask==2.0.2
+Flask-SQLAlchemy==2.5.1
+Flask-Login==0.5.0
+Flask-WTF==1.0.0
+Flask-Migrate==3.1.0
+Flask-Cors==3.1.1
+psycopg2-binary==2.9.1
+gunicorn==20.1.0
+EOL
+fi
+
 echo "📦 Installation des dépendances Python..."
 pip install -r requirements.txt
 
